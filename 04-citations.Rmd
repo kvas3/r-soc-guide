@@ -1,0 +1,3 @@
+# Conclusion
+
+If you worked your work through this guide, congratulations! R can have a steep learning curve, so remember to be patient with yourself. This guide provides only a glimpse into the analyses you can run in R, but we hope it helps you get started with survey data! 

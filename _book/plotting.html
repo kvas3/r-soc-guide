@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Plotting | R Guide for Sociological Analyses</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Plotting | R Guide for Sociological Analyses" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Plotting | R Guide for Sociological Analyses" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  
+
+<meta name="author" content="Vasudha Kumar, Daniel Lavarte" />
+
+
+<meta name="date" content="2023-08-22" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="basic-descriptive-statistics.html"/>
+<link rel="next" href="conclusion.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R Guide for Sociological Analyses</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#why-you-should-learn-r"><i class="fa fa-check"></i><b>1.1</b> Why you should learn R</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i><b>1.2</b> Usage</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#notes"><i class="fa fa-check"></i><b>1.2.1</b> Notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-set-up.html"><a href="data-set-up.html"><i class="fa fa-check"></i><b>2</b> Data Set-Up</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-set-up.html"><a href="data-set-up.html#package-installs"><i class="fa fa-check"></i><b>2.1</b> Package Installs</a></li>
+<li class="chapter" data-level="2.2" data-path="data-set-up.html"><a href="data-set-up.html#working-directory"><i class="fa fa-check"></i><b>2.2</b> Working Directory</a></li>
+<li class="chapter" data-level="2.3" data-path="data-set-up.html"><a href="data-set-up.html#backups"><i class="fa fa-check"></i><b>2.3</b> Backups</a></li>
+<li class="chapter" data-level="2.4" data-path="data-set-up.html"><a href="data-set-up.html#data-import"><i class="fa fa-check"></i><b>2.4</b> Data Import</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basic-descriptive-statistics.html"><a href="basic-descriptive-statistics.html"><i class="fa fa-check"></i><b>3</b> Basic Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="basic-descriptive-statistics.html"><a href="basic-descriptive-statistics.html#calculating-means"><i class="fa fa-check"></i><b>3.1</b> Calculating Means</a></li>
+<li class="chapter" data-level="3.2" data-path="basic-descriptive-statistics.html"><a href="basic-descriptive-statistics.html#adding-survey-weights"><i class="fa fa-check"></i><b>3.2</b> Adding Survey Weights</a></li>
+<li class="chapter" data-level="3.3" data-path="basic-descriptive-statistics.html"><a href="basic-descriptive-statistics.html#using-the-survey-package"><i class="fa fa-check"></i><b>3.3</b> Using the <code>Survey</code> Package</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="basic-descriptive-statistics.html"><a href="basic-descriptive-statistics.html#weighted-means"><i class="fa fa-check"></i><b>3.3.1</b> Weighted Means</a></li>
+<li class="chapter" data-level="3.3.2" data-path="basic-descriptive-statistics.html"><a href="basic-descriptive-statistics.html#working-with-several-variables"><i class="fa fa-check"></i><b>3.3.2</b> Working with several variables</a></li>
+<li class="chapter" data-level="3.3.3" data-path="basic-descriptive-statistics.html"><a href="basic-descriptive-statistics.html#quantiles"><i class="fa fa-check"></i><b>3.3.3</b> Quantiles</a></li>
+<li class="chapter" data-level="3.3.4" data-path="basic-descriptive-statistics.html"><a href="basic-descriptive-statistics.html#variance"><i class="fa fa-check"></i><b>3.3.4</b> Variance</a></li>
+<li class="chapter" data-level="3.3.5" data-path="basic-descriptive-statistics.html"><a href="basic-descriptive-statistics.html#totals"><i class="fa fa-check"></i><b>3.3.5</b> Totals</a></li>
+<li class="chapter" data-level="3.3.6" data-path="basic-descriptive-statistics.html"><a href="basic-descriptive-statistics.html#statistics-for-subsets-of-data"><i class="fa fa-check"></i><b>3.3.6</b> Statistics for subsets of data</a></li>
+<li class="chapter" data-level="3.3.7" data-path="basic-descriptive-statistics.html"><a href="basic-descriptive-statistics.html#saving-outputs"><i class="fa fa-check"></i><b>3.3.7</b> Saving outputs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>4</b> Plotting</a>
+<ul>
+<li class="chapter" data-level="4.0.1" data-path="plotting.html"><a href="plotting.html#using-ggplot2"><i class="fa fa-check"></i><b>4.0.1</b> Using ggplot2</a></li>
+<li class="chapter" data-level="4.1" data-path="plotting.html"><a href="plotting.html#saving-figures"><i class="fa fa-check"></i><b>4.1</b> Saving figures</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>5</b> Conclusion</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Guide for Sociological Analyses</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="plotting" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Plotting<a href="plotting.html#plotting" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The ggplot2 package is standard in the R universe to create high quality plots and graphs. Below is a brief overview, but you should also take a look at the <a href="https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf">ggplot2 cheatsheet</a>. The cheatsheet will be useful when you want greater control over plot formatting, scales, color, error bars, and other extras later.</p>
+<p>The ggplot2 package comes as part of the tidyverse. If you didn’t install the tidyverse package earlier, do it now using <code>install.packages("tidyverse")</code> and then load it into your R workspace using <code>library</code>.</p>
+<div id="using-ggplot2" class="section level3 hasAnchor" number="4.0.1">
+<h3><span class="header-section-number">4.0.1</span> Using ggplot2<a href="plotting.html#using-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When creating graphs using ggplot, the first line of code always uses the function <code>ggplot()</code> This is the foundation of your plot where you will usually provide the data for the graph, the variables you want to plot, and other aesthetic factors like colors.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="plotting.html#cb27-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> means, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> stype, <span class="at">y =</span> api00))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>Here, we’re plotting the type of school (E, M, H) on the x-axis and the mean API score in 2000 on the y-axis. Running this code alone will give you an empty plot. Every time you want to add a new layer to graph (e.g. line plots, bar graphs) you’ll use a plus sign at the end of each line. The extra layers to plot your data are called geoms. Below we use the point geom to display our data as points on the graph.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="plotting.html#cb28-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> means, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> stype, <span class="at">y =</span> api00)) <span class="sc">+</span></span>
+<span id="cb28-2"><a href="plotting.html#cb28-2" tabindex="-1"></a><span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>Recall that our table features each category of school twice: once for schools that are year round and another time for schools that are not, which is why this plot gives you two points/values for each category. We can differentiate between the two by adding a color argument in the plot aesthetics.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="plotting.html#cb29-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> means, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> stype, <span class="at">y =</span> api00, <span class="at">color =</span> yr.rnd)) <span class="sc">+</span></span>
+<span id="cb29-2"><a href="plotting.html#cb29-2" tabindex="-1"></a><span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>This code groups the points using the yr.rnd variable using colors and adds a legend. You can achieve something similar by using <code>shape</code> instead of color as well.</p>
+<p>Something that doesn’t quite work in our plot is the order of the school type variable. R orders the schools alphabetically: Elementary, High, then Middle. But we know that there’s an order/heirarchy to how this should be displayed. You can add an order to any variable using the <code>ordered</code> function.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="plotting.html#cb30-1" tabindex="-1"></a>means<span class="sc">$</span>stype <span class="ot">&lt;-</span> <span class="fu">ordered</span>(means<span class="sc">$</span>stype, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;E&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;H&quot;</span>))</span></code></pre></div>
+<p>Note that the $ sign after a data table name is used to specify a column in a dataframe. Now try plotting your graph again to check if it changes.</p>
+<p>While this chart looks nice, our data is probably better suited to a bar chart. Try making one using <code>geom_bar</code> instead of <code>geom_point</code>.</p>
+<blockquote>
+<p>Does your code return an error? This is because <code>geom_bar()</code> on its own is used to display histograms (which require only one variable). To ensure that R knows we want a bar graph as the output, add the <code>stat</code> argument to the bar geom layer as below:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="plotting.html#cb31-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> means, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> stype, <span class="at">y =</span> api00, <span class="at">fill =</span> yr.rnd)) <span class="sc">+</span></span>
+<span id="cb31-2"><a href="plotting.html#cb31-2" tabindex="-1"></a><span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p>(We changed our <code>color</code> argument in the plot aesthetics to <code>fill</code> because <code>color</code> will only outline the shapes instead of filling them with color.)</p>
+</blockquote>
+<p>This plot is still not quite what we want because our bars for each school category are stacked on top of each other. To modify with the positioning of these bars, we use the <code>position</code> argument in the geom layer.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="plotting.html#cb32-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> means, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> stype, <span class="at">y =</span> api00, <span class="at">fill =</span> yr.rnd)) <span class="sc">+</span></span>
+<span id="cb32-2"><a href="plotting.html#cb32-2" tabindex="-1"></a><span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>This is a better graph to interpret and draw inferences from. Other formatting options would be to change the labels of the axes, the legend titles, etc.</p>
+<p>You can layer multiple geom layers on the same plot. For example, we can add error bars to this graph using the confidence intervals we computed earlier. To add error bars:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="plotting.html#cb33-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> means, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> stype, <span class="at">y =</span> api00, <span class="at">fill =</span> yr.rnd)) <span class="sc">+</span></span>
+<span id="cb33-2"><a href="plotting.html#cb33-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
+<span id="cb33-3"><a href="plotting.html#cb33-3" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">mapping =</span>  <span class="fu">aes</span>(<span class="at">ymin =</span> ci_l.api00, <span class="at">ymax =</span> ci_u.api00, <span class="at">width =</span> <span class="fl">0.2</span>), <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="fl">0.9</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p>Here, we use <code>ymin</code> and <code>ymax</code> to specify where the lower and upper points of the confidence interval lines should appear. These variables already exist in our data.</p>
+<p>Great job! This is a lot of code to understand in the beginning, but you can find all these options along with additional geom layers, scale options, coordinate systems, etc in the ggplot cheatsheet.</p>
+</div>
+<div id="saving-figures" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Saving figures<a href="plotting.html#saving-figures" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now, let’s save this chart to our computer, so you can reference it easily later.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="plotting.html#cb34-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;api00_stype.png&quot;</span>)</span></code></pre></div>
+<p>Where on your computer do you think you just saved this plot? Hint: think about your working directory!</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="basic-descriptive-statistics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="conclusion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

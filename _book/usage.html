@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Usage | R Guide for Sociological Analyses</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Usage | R Guide for Sociological Analyses" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Usage | R Guide for Sociological Analyses" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  
+
+<meta name="author" content="Vasudha Kumar, Daniel Lavarte" />
+
+
+<meta name="date" content="2023-08-22" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="why-you-should-learn-r.html"/>
+<link rel="next" href="part-1-data-set-up.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="2" data-path="why-you-should-learn-r.html"><a href="why-you-should-learn-r.html"><i class="fa fa-check"></i><b>2</b> Why you should learn R</a></li>
+<li class="chapter" data-level="3" data-path="usage.html"><a href="usage.html"><i class="fa fa-check"></i><b>3</b> Usage</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="usage.html"><a href="usage.html#notes"><i class="fa fa-check"></i><b>3.1</b> Notes</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="part-1-data-set-up.html"><a href="part-1-data-set-up.html"><i class="fa fa-check"></i><b>4</b> Part 1: Data Set-Up</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="part-1-data-set-up.html"><a href="part-1-data-set-up.html#package-installs"><i class="fa fa-check"></i><b>4.1</b> Package Installs</a></li>
+<li class="chapter" data-level="4.2" data-path="part-1-data-set-up.html"><a href="part-1-data-set-up.html#working-directory"><i class="fa fa-check"></i><b>4.2</b> Working Directory</a></li>
+<li class="chapter" data-level="4.3" data-path="part-1-data-set-up.html"><a href="part-1-data-set-up.html#backups"><i class="fa fa-check"></i><b>4.3</b> Backups</a></li>
+<li class="chapter" data-level="4.4" data-path="part-1-data-set-up.html"><a href="part-1-data-set-up.html#data-import"><i class="fa fa-check"></i><b>4.4</b> Data Import</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="part-2-basic-descriptive-statistics.html"><a href="part-2-basic-descriptive-statistics.html"><i class="fa fa-check"></i><b>5</b> Part 2: Basic Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="part-2-basic-descriptive-statistics.html"><a href="part-2-basic-descriptive-statistics.html#calculating-means"><i class="fa fa-check"></i><b>5.1</b> Calculating Means</a></li>
+<li class="chapter" data-level="5.2" data-path="part-2-basic-descriptive-statistics.html"><a href="part-2-basic-descriptive-statistics.html#adding-survey-weights"><i class="fa fa-check"></i><b>5.2</b> Adding Survey Weights</a></li>
+<li class="chapter" data-level="5.3" data-path="part-2-basic-descriptive-statistics.html"><a href="part-2-basic-descriptive-statistics.html#using-the-survey-package"><i class="fa fa-check"></i><b>5.3</b> Using the <code>Survey</code> Package</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="part-2-basic-descriptive-statistics.html"><a href="part-2-basic-descriptive-statistics.html#weighted-means"><i class="fa fa-check"></i><b>5.3.1</b> Weighted Means</a></li>
+<li class="chapter" data-level="5.3.2" data-path="part-2-basic-descriptive-statistics.html"><a href="part-2-basic-descriptive-statistics.html#working-with-several-variables"><i class="fa fa-check"></i><b>5.3.2</b> Working with several variables</a></li>
+<li class="chapter" data-level="5.3.3" data-path="part-2-basic-descriptive-statistics.html"><a href="part-2-basic-descriptive-statistics.html#quantiles"><i class="fa fa-check"></i><b>5.3.3</b> Quantiles</a></li>
+<li class="chapter" data-level="5.3.4" data-path="part-2-basic-descriptive-statistics.html"><a href="part-2-basic-descriptive-statistics.html#variance"><i class="fa fa-check"></i><b>5.3.4</b> Variance</a></li>
+<li class="chapter" data-level="5.3.5" data-path="part-2-basic-descriptive-statistics.html"><a href="part-2-basic-descriptive-statistics.html#totals"><i class="fa fa-check"></i><b>5.3.5</b> Totals</a></li>
+<li class="chapter" data-level="5.3.6" data-path="part-2-basic-descriptive-statistics.html"><a href="part-2-basic-descriptive-statistics.html#statistics-for-subsets-of-data"><i class="fa fa-check"></i><b>5.3.6</b> Statistics for subsets of data</a></li>
+<li class="chapter" data-level="5.3.7" data-path="part-2-basic-descriptive-statistics.html"><a href="part-2-basic-descriptive-statistics.html#saving-outputs"><i class="fa fa-check"></i><b>5.3.7</b> Saving outputs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="part-3-plotting.html"><a href="part-3-plotting.html"><i class="fa fa-check"></i><b>6</b> Part 3: Plotting</a>
+<ul>
+<li class="chapter" data-level="6.0.1" data-path="part-3-plotting.html"><a href="part-3-plotting.html#using-ggplot2"><i class="fa fa-check"></i><b>6.0.1</b> Using ggplot2</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
+<li class="chapter" data-level="8" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>8</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>8.1</b> Equations</a></li>
+<li class="chapter" data-level="8.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>8.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="8.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>8.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>9</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>9.1</b> Publishing</a></li>
+<li class="chapter" data-level="9.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>9.2</b> 404 pages</a></li>
+<li class="chapter" data-level="9.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>9.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Guide for Sociological Analyses</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="usage" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Usage<a href="usage.html#usage" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This guide will set you up to conduct research with Dr. King in R, but
+it assumes some basic knowledge of R. Here are some resources to
+familiarize yourself with R syntax before you use our guide. You don’t
+have to go through all of them, but pick 1-2 to get started.</p>
+<ul>
+<li><a href="https://rstudio-education.github.io/hopr/">Hands-on Programming with
+R</a> (book; see appendix
+for R installation instructions)</li>
+<li><a href="https://www.burns-stat.com/documents/tutorials/impatient-r/">Impatient
+R</a>
+(quick written tutorial)</li>
+<li>Self-paced workshops by UC Berkeley’s D-Lab
+<ul>
+<li><p><a href="https://github.com/dlab-berkeley/R-Fundamentals">R
+Fundamentals</a></p></li>
+<li><p><a href="https://github.com/dlab-berkeley/R-Data-Wrangling">Data Wrangling in
+R</a></p></li>
+<li><p><a href="https://github.com/dlab-berkeley/R-Data-Visualization">Data
+Visualization</a></p></li>
+</ul></li>
+<li><a href="https://itsalocke.com/files/DataManipulationinR.pdf">Data Manipulation in R by Steph
+Locke</a> (book)</li>
+<li><a href="https://posit.co/resources/videos/a-gentle-introduction-to-tidy-statistics-in-r/">A Gentle Introduction to Tidy Statistics in
+R</a>
+(webinar)</li>
+<li><a href="https://rc2e.com/">R Cookbook by James Long</a> (book)</li>
+</ul>
+<div id="notes" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Notes<a href="usage.html#notes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Vas and Daniel started learning R in 2020, and this guide was last
+updated in 2023. R is a powerful language, so there is all sorts of
+analysis you can leverage it for. To name a few, spatial research (e.g.,
+mapping and GIS), textual analysis, and network analysis can all be
+performed using R. This guide covers one small part: survey analysis,
+specifically, analysis of large-scale survey data that is weighted.
+Fortunately, the datasets we worked with during our RAships with Dr.
+King had already been meticulously cleaned, but it’s possible you’ll
+have to clean and tidy data on your own. We hope the resources above can
+help you get started here.</p>
+<p>R is open-source, so this means there are always new updates and
+features added to the software to ensure that it keeps up with the
+times. It’s possible that some of the code in this guide (or content in
+the resources listed above) is outdated. We hope that this guide will
+still be useful as a starting point to your work. With a little
+googling, you should also be find tons of other learning materials
+online. In any case, you’re always welcome to email
+vasudha.037@gmail.com with questions, corrections, or other musings.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="why-you-should-learn-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="part-1-data-set-up.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

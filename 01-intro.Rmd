@@ -1,0 +1,79 @@
+# Data Set-Up
+
+## Package Installs
+
+If you find yourself on this page but have have yet to work through any of the resources on the previous page (good sign! you're excited to learn!), try to *at least* work through this [webpage](https://rstudio-education.github.io/hopr/basics.html) before following this guide. Our guide won't be able to teach you the fundamentals of R, and skipping the basics now may haunt you later!
+
+Now that you have hopefully gone through at least one introductory resource, you are better prepared to use this guide! To get started, open RStudio and open a new R script. As a reminder, you can open a script by clicking `File` -\> `New File` -\> `R Script` once RStudio is open.
+
+The first step for your research project will be to install and load the necessary packages. As you may have read [here](https://rstudio-education.github.io/hopr/packages.html#packages-1), a package is just a set of functions (or tools) to help you analyze data in R. You need to download each package just once, and you can do so from R's command line (remember: it's that bottom line in the `Console` panel where you can type code) directly. Once you download a package, you have to load it into your R session. This makes sure that the package is ready for your use, and you have to do this every time you start a new R session.
+
+Here are some packages Vas and Daniel used in their research:
+
+-   `tidyverse`: This is probably one of the most used packages in the R-verse. It's actually a package of packages and will be necessary for data tidying, manipulation, and visualization.
+
+-   `survey`: This package is useful for analyzing large-scale survey data. We'll use to add weights to our data and develop descriptive statistics including means, ratios, etc.
+
+-   `haven`: If the data set you are using is a .dta file (a commonly used format for Stata users), you'll need this package to allow R to read this type of file format.
+
+To install these packages, simply run:
+
+```{r, package install, warning=FALSE, error=FALSE, message=FALSE, eval = FALSE}
+
+install.packages("tidyverse")
+install.packages("survey")
+install.packages("haven")
+# Remember, you need to do this just once on your computer. 
+
+```
+
+To load these packages into your R session, run:
+
+```{r, packages, warning=FALSE, error=FALSE, message=FALSE}
+library("haven")
+library("survey")
+library("tidyverse")
+# You'll need to run these lines of code every time you start a new R session. 
+# It's a good idea to paste them into your R script with all the other code 
+# you save for your use later. 
+
+```
+
+## Working Directory
+
+Refresher: a working directory is "the default location where R will look for files you want to load and where it will put any files you save" ([Douglas et al 2023](https://intro2r.com/work-d.html)).
+
+You need to set your working directory correctly in order to tell R the location of your survey data on your computer Refresher on how to set your working directory. Before setting your directory, we recommend that your datasets and all other files related to your research project are available in one dedicated folder on your computer. You can set your working directory by following the code template below:
+
+```{r, WD, eval = F}
+setwd("/Users/vkumar/Desktop/finlit_project")
+
+```
+
+-   `setwd` is the function used to set our directory.
+-   `"/Users/vkumar/Desktop/finlit_project"` is the path to the folder where Vas stored all her project data. If using MacOS, you can find this filepath by right-clicking on your project folder, then holding down the `option` key on your keyboard, then clicking on "Copy [FOLDER] as Pathname.
+
+## Backups
+
+Research is hard work, and we know all too well the pain of losing hours of work to computer crashes and other nightmares. Before you make any more progress with your research project, make sure you have dedicated folder to store all your code and data. Then, set up an automatic backup system (since the code is the only part of the project you need to reproduce the analysis, the code is a very efficient way to back up your project!). [Google Backup and Sync](https://www.google.com/intl/en_cy/drive/download/) is a good way to backup automatically to Google Drive. Set this up to automatically backup to a folder in your Google Drive RA folder shared with Dr. King. GitHub is another (probably better) option, but since it is has somewhat of a learning curve, we won't cover it here. Here's one [resource](https://ohi-science.org/data-science-training/github.html) to help you get started.
+
+## Data Import
+
+You're so close! All that's left for you to start conducting your amazing research is importing your data into R. If your data is in csv (spreadsheet) format, you can run something like this to import it into R:
+
+```{r import, eval = F}
+mydata <- read_csv("myfile.csv")
+
+# Here, "mydata" is what we named our dataset in the R workspace. 
+# Now, whenever we want to work with our data, we just need to call it 
+# by its name, "mydata". You can name your data whatever you'd like. 
+# "myfile.csv" is the name of our dataset in our working directory 
+```
+
+Prof. King uses the Stata software to conduct her research, so it's likely that you'll be working with files in the `dta` format. Luckily, there's a package that lets us import Stata files into R. The code template is very similar to the one above, except the function below relies on the haven package that we installed earlier.
+
+```{r import dta, eval = F}
+mydata <- read_dta("myfile.dta")
+```
+
+Excellent! We're ready for some analysis!

@@ -1,0 +1,94 @@
+---
+title: "R Guide for Sociological Analyses"
+author: "Vasudha Kumar, Daniel Lavarte"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  This is a minimal example of using the bookdown package to write a book.
+  set in the _output.yml file.
+  The HTML output format for this example is bookdown::gitbook,
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# About
+
+Welcome to this guide! We, Vas (c/o 2021) and Daniel (c/o 2022), are two
+sociology alumni from Santa Clara. One of the highlights of our time in
+the department was our RAship with Dr. Molly King. We loved our time
+learning R under Prof. King's guidance and are excited to pass on our
+learnings to support future RAs with their research. We hope this guide
+will help you get excited and set-up to conduct sociological analyses in
+R!
+
+## Why you should learn R
+
+R is a free, open-source statistical software. It's widely used in
+academia & research and is also used in many industries for data
+analysis, visualization, and GIS. If you don't know other
+programming/coding languages yet, R is a great primer as it translates
+well to Python and will help you develop data science and computational
+social science skills. Because R is open-source, it makes our scientific
+pursuits of reproducibility, transparency, and open science much easier.
+Last but not least, there is a large community of users and developers
+who contribute to improving R, so it's *very* likely that other users
+have already encountered the errors and roadblocks that might line your
+path as you learn this language.
+
+## Usage
+
+This guide will set you up to conduct research with Dr. King in R, but
+it assumes some basic knowledge of R. Here are some resources to
+familiarize yourself with R syntax before you use our guide. You don't
+have to go through all of them, but pick 1-2 to get started.
+
+-   [Hands-on Programming with
+    R](https://rstudio-education.github.io/hopr/) (book; see appendix
+    for R installation instructions)
+-   [Impatient
+    R](https://www.burns-stat.com/documents/tutorials/impatient-r/)
+    (quick written tutorial)
+-   Self-paced workshops by UC Berkeley's D-Lab
+    -   [R
+        Fundamentals](https://github.com/dlab-berkeley/R-Fundamentals)
+
+    -   [Data Wrangling in
+        R](https://github.com/dlab-berkeley/R-Data-Wrangling)
+
+    -   [Data
+        Visualization](https://github.com/dlab-berkeley/R-Data-Visualization)
+-   [Data Manipulation in R by Steph
+    Locke](https://itsalocke.com/files/DataManipulationinR.pdf) (book)
+-   [A Gentle Introduction to Tidy Statistics in
+    R](https://posit.co/resources/videos/a-gentle-introduction-to-tidy-statistics-in-r/)
+    (webinar)
+-   [R Cookbook by James Long](https://rc2e.com/) (book)
+-   [Survey Data Analysis with R](https://stats.oarc.ucla.edu/r/seminars/survey-data-analysis-with-r/) (webpage)
+
+### Notes
+
+Vas and Daniel started learning R in 2020, and this guide was last
+updated in 2023. R is a powerful language, so there is all sorts of
+analysis you can leverage it for. To name a few, spatial research (e.g.,
+mapping and GIS), textual analysis, and network analysis can all be
+performed using R. This guide covers one small part: survey analysis,
+specifically, analysis of large-scale survey data that is weighted.
+Fortunately, the datasets we worked with during our RAships with Dr.
+King had already been meticulously cleaned, but it's possible you'll
+have to clean and tidy data on your own. We hope the resources above can
+help you get started here.
+
+R is open-source, so this means there are always new updates and
+features added to the software to ensure that it keeps up with the
+times. It's possible that some of the code in this guide (or content in
+the resources listed above) is outdated. With a little
+googling, you should be able find tons of other learning materials
+online. You're always welcome to email
+vasudha.037\@gmail.com with questions, corrections, or other musings.

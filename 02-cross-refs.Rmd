@@ -1,0 +1,166 @@
+# Basic Descriptive Statistics
+
+When you start performing your own sociological analysis, you'll use own dataset that you imported in the last chapter. For demonstration purposes, we'll use an example dataset that comes along with the `survey` package. Feel free to follow along - all the code below will also work on your machine as long the `survey` package is loaded in your R session. To load the package and the example datasets into your R workspace, run:
+
+
+```{r load api, message = F}
+library(survey)
+data(api)
+```
+
+```{r, include = F, message = F}
+library(dplyr)
+```
+You should now have several datasets loaded into you RStudio workspace. These contain data on Academic Performance Index (API), a measure of student performance for California schools for 1999 and 2000. Specifically, we'll be working with the `apistrat` dataset in RStudio. Learn more about this example dataset and its variables in the [survey package documentation](https://cran.r-project.org/web/packages/survey/survey.pdf) (p 5-7).
+
+## Calculating Means
+
+If you skimmed through the resource materials we provided at the start of this guide, you probably already know that R makes it extremely easy for you to calculate the mean - or average - of a variable. Let's say we want the average of the `api00`, the API (Academic Performance Index) in 2000. We could run the code below which tells R to compute the mean of the `api00` variable in the `apipop` dataset.
+
+```{r, results = FALSE}
+mean(apipop$api00)
+```
+
+> Sidenote: Another way to calculate the mean is to run the code below:
+>
+> ```{r, results = F}
+> apipop %>%
+>   summarize(mean(api00))
+> ```
+>
+> Sidenote: both of these chunks of code give you the same output. R is very flexible in its use, so there will often be several ways to achieve the same output. This might feel overwhelming in the beginning. For now, you don't have to keep track of everything or learn every single method. Stick to learning just one method for the tasks you want to accomplish. As you become more comfortable with R syntax, you'll be able to understand other methods and adapt to different syntax more easily.
+
+Great! We now know that the average API in 2000 was 664.71! When it comes to survey data, however, it is rarely accurate to just calculate the simple mean of your data. Survey data is often based on a sample of the population, which means that there are usually weights to each response (or row) in the dataset. In our case, the `apistrat` dataset provides probability weights in the `pw` column.
+
+## Adding Survey Weights
+
+The first step in our survey analysis process is to add weights to the data frame. For this, we're relying on the `survey` package described in the previous chapter. The `svydesign` function from this package allows us to create a new dataset with the added weights.
+
+```{r, results = FALSE}
+data.w <- svydesign(ids = ~0, 
+                    data = apistrat,
+                    weights = ~pw)
+```
+
+Hopefully, this code is straightforward enough for you to decipher. If you're unsure about any arguments (especially `ids`), take a look at the [documentation](https://cran.r-project.org/web/packages/survey/survey.pdf) for this package to help yourself figure them out. You can also run `?svydesign` in RStudio to view the help page for the function. Reading function documentation to pull out the information you need - no matter how complex it may all seem - is an important coding skill! Honing it early will be helpful, so make it a habit to skim through help pages for commonly-used functions.
+
+Note that we add the `~` symbol (called a tilde) when specifying weights because that's the syntax followed by the survey package. This means that this package generally requires the tilde when specifying variable names or R will return an error.
+
+## Using the `Survey` Package
+
+Great, now we're ready to do some real (weighted) analysis!
+
+### Weighted Means
+
+The survey package provides specific functions to compute descriptive statistics for weighted, survey data. We'll use the `svymean` function to compute some means.
+
+The `svymean` function takes two required arguments: (1) the variable for which to compute the mean, and (2) the weighted dataset. Let's try.
+
+```{r, results = FALSE}
+svymean(~api00, design = data.w)
+```
+
+This returns the mean of the API in 2000 for California schools.
+
+If the dataset you're working with has missing values, R may return an error or NAs. You can fix this using the additional argument `na.rm` for all functions in this package.
+
+```{r, results = FALSE}
+svymean(~api00, design = data.w, na.rm = TRUE)
+```
+
+This ensures that missing values are omitted while computing the means. If your data has missing values, discuss with Dr. King to decide the best way to deal with them.
+
+Note that the dataset `data.w` we provide in this command is the modified, weighted data, not the original unweighted data. You can also leave out the argument names, a.k.a `design =`, and simply type data.w after the comma, but it is a good idea to practice including argument names in the beginning.
+
+### Working with several variables
+
+When conducting your research, it's likely that your research question will concern several variables. Taking the example of the API dataset, we might be interested in changes in the Academic Performance Index from 1999 to 2000. To calculate the mean API for both years, we could run:
+
+```{r, results = FALSE}
+svymean(~api99, design = data.w)
+svymean(~api00, design = data.w)
+```
+
+While this gives us the information we wanted, it can sometimes be annoying to type out similar commands repeatedly. Fortunately, the `survey` packages allows us to calculate the means of several variable simultaneously. Simply separate your variables of interest using a plus (`+`) sign.
+
+```{r, results = FALSE}
+svymean(~api99+api00, design = data.w)
+```
+
+### Quantiles
+
+Next, let's try to compute quantiles and medians for this data using the `svyquantile` function. This function takes an extra required argument called "quantiles" to tell R the percentiles you want to compute. In this example, let's first try computing the median (or 50th percentile) of the API in 2000.
+
+```{r, results = FALSE}
+svyquantile(~api00, design = data.w, quantiles = 0.5)
+```
+
+Read the output carefully. It provides us several pieces of key information: quantile, ci.2.5, ci.97.5, and se. Try to read the svyquantile function's documentation by running `?svyquantile` to understand what these data mean.
+
+You can also compute several quantiles simultaneously. The following line of code computes the 25, 50, and 75th percentiles.
+
+```{r, results = FALSE}
+svyquantile(~api00, design = data.w, quantiles = c(0.25, 0.5, 0.75))
+```
+
+Like in svymean, you can compute the quantiles (and other survey statistics) for more than one variable using the plus sign.
+
+```{r, results = FALSE}
+svyquantile(~api99+api00, design = data.w, quantiles = c(0.25, 0.5, 0.75))
+```
+
+Great work! On your own, try calculating every 10th percentile of the API in the years 1999 and 2000.
+
+### Variance
+
+Next, let's try computing variance. We'll use the `svyvar` function that relies on the same structure as the functions above.
+
+```{r, results = FALSE}
+svyvar(~api99+api00, design = data.w)
+```
+
+### Totals
+
+This next function, `svytotal` also uses a similar format to estimate population totals for a variable. Let's try to figure out the number of students enrolled in each level (E, M, H) of California schools.
+
+```{r}
+svytotal(~stype, design = data.w)
+```
+
+Notice how the unweighted data only has a total of 200 schools, yet our weighted data returns thousands of schools. This is because of our survey weights.
+
+### Statistics for subsets of data
+
+For your research question, you are most likely most interested in the relationship between two or more variables. In this data, we might be interested in exploring the API across various school types, i.e., elementary, middle, and high schools. We can do such computations using the \`svyby\` function.
+
+Let's estimate the mean API in 2000 across the different levels/types of schools (E. M, H).
+
+```{r}
+svyby(~api00, by = ~stype, design = data.w, FUN = svymean)
+
+```
+
+Here, we are asking R to compute the mean API in 2000 **by** the type of school. You can calculate different statistics by providing different functions to the `FUN` argument. Try calculating the variance of API in 2000 by school type. (Hint: you would replace something in the code above with `svyvar`.)
+
+Recall that you can calculate the **mean of several variables across several variables** using the + sign. The code below returns the API means for 1999 and 2000 categorized by the school level and year-round status.
+
+```{r}
+svyby(~api99+api00, by = ~stype+yr.rnd, design = data.w, FUN = svymean)
+```
+
+The output also reports the standard errors. You can ask to report confidence intervals or other measures of variability by adding the argument `vartype` as below:
+
+```{r}
+svyby(~api99+api00, by = ~stype+yr.rnd, design = data.w, FUN = svymean,
+      vartype = "ci")
+```
+
+### Saving outputs
+
+While conducting your research and analysis, it's likely that you'll use the values you estimated above several times (e.g., to compare with other means, to create figures and charts, to export in a spreadsheet, etc.) Instead of computing these values every time you want to conduct analyses, you can save them as an 'object' in R. Do this using the `<-` symbol. Use an object name/abbreviation that you can be consistent with and recall easily.
+
+```{r}
+means <- svyby(~api99+api00, by = ~stype+yr.rnd, design = data.w, FUN = svymean, vartype = "ci") 
+```
+
+Now, whenever you want to take a look at this table, you can view the `means` table and use it to run other analyses. If other functions ever give you trouble when running analyses on the `means` object due to its "object type" being "svyby" (you can see this in the right-hand Environment pane in RStudio), you can also convert it to the data frame format by running `means <- as.data.frame(means).`
